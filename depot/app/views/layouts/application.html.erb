@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pragprog Books Online Store</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %>">
+  <% if user_signed_in? %>
+<div class ="layout">
+    
+<%= link_to "sign out", destroy_user_session_path, :method =>:delete %>
+<% else %>
+ <%= link_to "sign up", new_user_registration_path%> or <%= link_to "sign in", new_user_session_path %>
+<% end %>
+  <div id="banner">
+   <%= form_tag store_path, class: 'locale' do %>
+    <%= select_tag 'set_locale',
+      options_for_select(LANGUAGES, I18n.locale.to_s),
+      onchange: 'this.form.submit()' %>
+    <%= submit_tag 'submit' %>
+    <%= javascript_tag "$('.locale input').hide()" %>
+<% end %>
+
+       <%= image_tag("logo.jpeg") %>
+   <center><b><u><%= @page_title || t('.title') %></u><b></center>
+    
+  </div>
+  
+    <div id="columns">
+      <div id="side">
+        <% if @cart %>
+          <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+            <%= render @cart %>
+          <% end %>
+        <% end %>
+        <ul>
+          <% if (user_signed_in? && current_user.role == 'admin') %>
+          <li><%=link_to t('.home'), admin_path %></li>
+          
+          <%else%>
+          <li><%= link_to t('.home'), store_path %></li>
+          
+          <li><%=link_to 'history', history_index_path %></li>
+         
+           <li><%= link_to 'Profile', current_user %></li>
+           <li><%= link_to 'mycart', mycart_index_path %></li>
+          <%end%>
+          
+          
+        </ul>
+      </div>
+    </div>
+      <% if (user_signed_in? && current_user.role == 'admin') %>
+      <div id="columns">
+      <div id="side1">
+        
+          <ul>
+            <li><%= link_to t('.orders'), orders_path%></li>
+            <li><%= link_to t('.products'), products_path %></li>
+            <li><%= link_to t('.users'), users_path %></li>
+          </ul>
+          
+        
+
+      </div>
+      </div>
+      <% end %>
+    <div id="columns">
+      <div id="main"> 
+        <%= yield %>
+      </div>
+    </div>
+</body>
+</html>

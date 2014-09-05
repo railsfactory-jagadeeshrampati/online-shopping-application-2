@@ -1,0 +1,45 @@
+// Place all the styles related to the Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.orders {
+	table {
+		border-collapse: collapse;
+	}
+    table tr td {
+		padding: 0px;
+		vertical-align: top;
+	}
+	.list_image {
+		width: 60px;
+		height: 70px;
+	}
+	.list_description {
+		width: 82%;
+		dl {
+			margin: 0;
+		}
+		dt {
+			color:#244;
+			font-weight: bold;
+			font-size: larger;
+		}
+		dd {
+			margin: 0;
+		}
+	}
+
+	.list_actions {
+		font-size:
+		x-small;
+		text-align: right;
+		padding-left: 2em;
+	}
+
+	.list_line_even {
+		background: gray;
+	}
+
+	.list_line_odd {
+		background: #f8b0f8;
+	}
+}

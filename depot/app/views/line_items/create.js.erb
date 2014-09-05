@@ -1,0 +1,8 @@
+$('#notice').hide();
+
+if ($('#line_items tr').length == 1) { $('#line_items').show('blind', 1000); }
+
+$('#line_items').html("<%= escape_javascript render(@line_items) %>");
+
+$('#line_items').css({'background-color':'#C00000'}).
+animate({'background-color':'#280000 '}, 1000);
