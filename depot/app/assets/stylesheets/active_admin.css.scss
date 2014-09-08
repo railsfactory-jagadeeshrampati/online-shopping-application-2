@@ -15,9 +15,28 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.status_tag {
+  background: darken($secondary-color, 15%);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 3px 5px 2px 5px;
+  font-size: 0.8em;
+
+  
+  &.done, &.green { background: #8daa92; }
+  &.pending, &.red { background: #d45f53; }
+}
+
 img {
 	   float: left;
 	   margin-left: 0px;
-	   height: 60px;
+	   height: 100px;
            width: 180px;
 	}
+
+
+
+
+	

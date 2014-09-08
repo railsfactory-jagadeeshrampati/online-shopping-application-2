@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 #validates :title, :description, :image_url, presence: true
  validates :price, numericality: {greater_than_or_equal_to: 0.01}
  validates :title, uniqueness: true
- 
+ scope :pending,where(:status => "pending")
  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
  def add_product(product_id, current_user)
         current_item = current_user.line_items.where(order_id: nil).find_by(product_id: product_id)

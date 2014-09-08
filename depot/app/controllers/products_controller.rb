@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_filter :check_privileges!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:show]
 
   # GET /products
   # GET /products.json
